@@ -3,8 +3,8 @@ import fs from 'fs';
 import path from 'path';
 import crypto from 'crypto';
 import {fileURLToPath} from 'url';
-const root=path.join(path.dirname(fileURLToPath(import.meta.url)),'public');
-const dataDir=path.join(path.dirname(root),'data'); fs.mkdirSync(dataDir,{recursive:true});
+const root=path.dirname(fileURLToPath(import.meta.url));
+const dataDir=path.join(root,'data'); fs.mkdirSync(dataDir,{recursive:true});
 const dbFile=path.join(dataDir,'players.json');
 let players={}; try{players=JSON.parse(fs.readFileSync(dbFile,'utf8'))||{}}catch{}
 function save(){fs.writeFileSync(dbFile,JSON.stringify(players,null,2))}
